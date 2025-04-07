@@ -6,8 +6,8 @@ import os
 app = Flask(__name__)
 
 # Load from environment variables
-TWILIO_SID = os.environ.get("TWILIO_SID")
-TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
+TWILIO_SID = os.environ.get("ACab695f6f7e2465502a3e7ea61b3a478e")
+TWILIO_AUTH_TOKEN = os.environ.get("AuthToken")
 TWILIO_WHATSAPP_NUMBER = os.environ.get("TWILIO_WHATSAPP_NUMBER")
 
 client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
