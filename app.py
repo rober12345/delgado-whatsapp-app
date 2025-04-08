@@ -1,4 +1,4 @@
-
+import json
 from flask import Flask, request, render_template
 from twilio.rest import Client
 from dotenv import load_dotenv
@@ -24,17 +24,16 @@ def index():
         delivery_date = request.form["delivery_date"]
         delivery_time = request.form["delivery_time"]
 
-        # Plain text message
-        message_body = (
-            f"Thank you for your order. Your delivery is scheduled for {delivery_date} "
-            f"at {delivery_time}. Please pick it up at the store you purchased. Thanks!"
-        )
-
         try:
             client.messages.create(
                 from_=f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
                 to=f"whatsapp:{whatsapp_number}",
-                body=message_body
+                content_sid="HX077c6287218dcb0c30b7fd515a20368b",  # Your approved template SID
+                content_variables=json.dumps({
+                    "1": order_number,
+                    "2": delivery_date,
+                    "3": delivery_time
+                })
             )
             return render_template("index.html", success=True)
         except Exception as e:
